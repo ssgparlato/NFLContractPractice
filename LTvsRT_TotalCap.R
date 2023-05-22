@@ -35,3 +35,5 @@ ggplot(total_cap, aes(x = Year, y = Total_Cap, color = Position, group = Positio
        y = "Total Cap Number (in millions)") +
   scale_color_manual(values = c("right-tackle" = "red", "left-tackle" = "blue")) +
   theme_minimal()
+
+ggsave("total_cap_comparison.png", width = 8, height = 6, dpi = 300)
