@@ -18,35 +18,34 @@ salary_scrape <- function(year, position) {
     purrr::map_dfr(as.data.frame)  # Convert list to data frame
 }
 
-# Combine 'right-tackle' data from 2015 to 2024
+# Combine 'center' data from 2015 to 2024
 year_start <- 2015
 year_end <- 2024
-right_tackle <- tibble()
-position <- 'right-tackle'
+center <- tibble()
+position <- 'center'
 
 for (year in year_start:year_end) {
   data <- salary_scrape(year, position)
   data$Year <- year
-  right_tackle <- bind_rows(right_tackle, data)
+  center <- bind_rows(center, data)
 }
 
-# Combine 'left-tackle' data from 2015 to 2024
-left_tackle <- tibble()
-position <- 'left-tackle'
+# Combine 'fullback' data from 2015 to 2024
+fullback <- tibble()
+position <- 'fullback'
 
 for (year in year_start:year_end) {
   data <- salary_scrape(year, position)
   data$Year <- year
-  left_tackle <- bind_rows(left_tackle, data)
+  fullback <- bind_rows(fullback, data)
 }
 
 # View the combined data frames
-print(right_tackle)
-print(left_tackle)
+print(center)
+print(fullback)
 
-# Save 'right_tackle' data frame
-save(right_tackle, file = "right_tackle.RData")
+# Save 'center' data frame
+save(center, file = "center.RData")
 
-# Save 'left_tackle' data frame
-save(left_tackle, file = "left_tackle.RData")
-
+# Save 'fullback' data frame
+save(fullback, file = "fullback.RData")
