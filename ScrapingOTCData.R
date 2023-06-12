@@ -5,7 +5,7 @@ library(glue)
 # URL
 positions_url <- 'https://overthecap.com/position/'
 
-# Building a Webscraping Function
+# Building a Web-scraping Function
 salary_scrape <- function(year, position) {
   
   positions_url <- glue('https://overthecap.com/position/{position}/{year}')
@@ -18,34 +18,20 @@ salary_scrape <- function(year, position) {
     purrr::map_dfr(as.data.frame)  # Convert list to data frame
 }
 
-# Combine 'center' data from 2015 to 2024
+# Combine 'safety' data from 2015 to 2024
 year_start <- 2015
 year_end <- 2024
-center <- tibble()
-position <- 'center'
+safety <- tibble()
+position <- 'safety'
 
 for (year in year_start:year_end) {
   data <- salary_scrape(year, position)
   data$Year <- year
-  center <- bind_rows(center, data)
+  safety <- bind_rows(safety, data)
 }
 
-# Combine 'fullback' data from 2015 to 2024
-fullback <- tibble()
-position <- 'fullback'
+# View the 'safety' data frame
+print(safety)
 
-for (year in year_start:year_end) {
-  data <- salary_scrape(year, position)
-  data$Year <- year
-  fullback <- bind_rows(fullback, data)
-}
-
-# View the combined data frames
-print(center)
-print(fullback)
-
-# Save 'center' data frame
-save(center, file = "center.RData")
-
-# Save 'fullback' data frame
-save(fullback, file = "fullback.RData")
+# Save 'safety' data frame
+save(safety, file = "safety.RData")
